@@ -13,7 +13,15 @@ def app():
     """)
     client = AWSManager().client # boto3 dynamodb client reference
     dynamodb = Generics(client)
-    import pdb;pdb.set_trace()
+    dynamodb.create_table('users')
+    newuser={
+        'id': 1,
+        'info': {
+            'name':"Venkata Sai Katepalli",
+            'email': "venkatasaikatepalli@gmail.com"
+        }
+    }
+    dynamodb.add_to_table('users', newuser)
 
 if __name__ == '__main__':
     app()
